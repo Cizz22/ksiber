@@ -46,7 +46,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(PersonalInformation::class);
     }
-
+    public function personalInformationNoEncrypt()
+    {
+        return $this->hasOne(PersonalInformationNoEncrypt::class);
+    }
     public function medicalRecords()
     {
         return $this->hasMany(MedicalRecord::class);
