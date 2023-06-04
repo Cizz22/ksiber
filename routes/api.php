@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MedicalRecordController;
+use App\Http\Controllers\NoEncryptionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserControllerBcrypt;
 use App\Http\Controllers\UserControllerNoEncrypt;
+use App\Http\Controllers\NewEncryptionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +30,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/user', [UserController::class, 'store']);
     Route::get('/userNoEncrypt', [UserControllerNoEncrypt::class, 'index']);
     Route::post('/userNoEncrypt', [UserControllerNoEncrypt::class, 'store']);
+    Route::get('/newEncrypt', [NewEncryptionController::class, 'index']);
+    Route::post('/newEncrypt', [NewEncryptionController::class, 'store']);
 });

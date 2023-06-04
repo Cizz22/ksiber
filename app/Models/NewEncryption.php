@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PersonalInformationNoEncrypt extends Model
+class NewEncryption extends Model
 {
-    protected $table = "personal_information_bcrypt";
+    protected $table = "new_encryption";
     protected $fillable = [
         'first_name',
         'last_name',

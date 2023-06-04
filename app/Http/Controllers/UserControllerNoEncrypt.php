@@ -18,7 +18,7 @@ class UserControllerNoEncrypt extends Controller
     public function index()
     {
         //Retrive all user information
-        $personal_information = Auth::user()->personalInformationNoEncrypt;
+        $personal_information = Auth::user()->personalInformation;
 
         return response()->json([
             'message' => 'Successfully retrieved all user information',
