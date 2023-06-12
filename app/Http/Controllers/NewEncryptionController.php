@@ -35,6 +35,17 @@ class NewEncryptionController extends Controller
         return $decryptedData;
     }
 
+    function decryptDateOfBirth($data)
+    {
+        // Decrypt the data
+        $decryptedData = $this->decryptData($data);
+
+        // Convert the decrypted data back to the date format
+        $dateOfBirth = date('Y-m-d', strtotime($decryptedData));
+
+        return $dateOfBirth;
+    }
+
 
     // public function index()
     // {
@@ -70,16 +81,16 @@ class NewEncryptionController extends Controller
     {
         try {
             $personal_information = Auth::user()->newEncryption;
-    
+
             $decryptedData = [
                 'first_name' => $this->decryptData($personal_information->first_name),
                 'last_name' => $this->decryptData($personal_information->last_name),
-                'date_of_birth' => $this->decryptData($personal_information->date_of_birth->toDateString()),
+                'date_of_birth' => $this->decryptDateOfBirth($personal_information->date_of_birth),
                 'NIK' => $this->decryptData($personal_information->NIK),
                 'phone_number' => $this->decryptData($personal_information->phone_number),
                 'user_id' => $personal_information->user_id
             ];
-    
+
             return response()->json([
                 'message' => 'Successfully retrieved personal information',
                 'data' => $decryptedData
@@ -91,7 +102,7 @@ class NewEncryptionController extends Controller
             ], 500);
         }
     }
-    
+
 
     public function store(Request $request)
     {

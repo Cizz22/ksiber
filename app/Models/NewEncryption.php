@@ -16,6 +16,7 @@ class NewEncryption extends Model
         'phone_number',
         'user_id'
     ];
+    
     protected $casts = [
         'date_of_birth' => 'date'
     ];
