@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Psy\Exception\ThrowUpException;
 
 class NewEncryptionController extends Controller
 {
@@ -33,6 +34,10 @@ class NewEncryptionController extends Controller
             $decryptedData .= $decryptedChar;
         }
         return $decryptedData;
+    }
+
+    function encryptDaeOfBirth($data){
+
     }
 
     function decryptDateOfBirth($data)
@@ -118,11 +123,12 @@ class NewEncryptionController extends Controller
             'phone_number' => 'required|string'
         ]);
 
+
         try {
             $personal_information = new NewEncryption([
                 'first_name' => $this->encryptData($request->first_name),
                 'last_name' => $this->encryptData($request->last_name),
-                'date_of_birth' => $this->encryptData(urlencode($request->date_of_birth)),
+                'date_of_birth' => $this->encryptData($request->date_of_birth),
                 'NIK' => $this->encryptData($request->NIK),
                 'phone_number' => $this->encryptData($request->phone_number),
                 'user_id' => $user_id
